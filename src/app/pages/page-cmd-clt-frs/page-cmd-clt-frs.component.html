@@ -38,7 +38,7 @@
           <div class="card-footer">
             <div class="row">
               <div class="col-md-6 text-left">
-                <h5>{{mapLignesCommande.get(cmd.id).length}} lignes de commande</h5>
+                <h5>{{mapLignesCommande.get(cmd.id)?.length}} lignes de commande</h5>
               </div>
               <div class="col-md-6 text-right">
                 <h5>Total commande: {{ calculerTotalCommande(cmd.id) }}</h5>
