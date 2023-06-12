@@ -11,7 +11,7 @@ pipeline {
        } 
     stage('Build') {
       steps {
-        sh 'npm install' // Install project dependencies
+        sh '/root/.nvm/versions/node/v14.21.3/bin/npm install' // Install project dependencies
       }
     }
 
