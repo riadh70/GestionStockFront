@@ -1,4 +1,10 @@
-pipeline {
+pipeline {  
+  
+  environment{
+         PATH = '/usr/local/bin:/usr/bin:/bin'
+    } 
+  
+  
   agent any
 
   stages { 
@@ -11,9 +17,9 @@ pipeline {
        } 
     stage('Install node modules') {  
        steps {   
-              sh 'echo "export PATH=/root/.nvm/versions/node/v12.22.12/bin:$PATH" > npm_wrapper.sh'
-              sh 'echo "npm install" >> npm_wrapper.sh'
-              sh 'sh npm_wrapper.sh' // Execute the wrapper script
+              
+              sh  "npm install" 
+             
          }
     }
 
