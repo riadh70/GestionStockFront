@@ -9,9 +9,9 @@ pipeline {
            echo 'checkout stage'
           }
        } 
-    stage('Build') {  
+    stage('Install node modules') {  
        steps {   
-             sh 'npm install' // Use full path to npm  
+             sh "npm install" // Use full path to npm  
          }
     }
 
