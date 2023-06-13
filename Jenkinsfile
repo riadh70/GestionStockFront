@@ -10,11 +10,9 @@ pipeline {
           }
        } 
     stage('Build') {  
-       steps { 
-              sh 'env'
-              sh 'export PATH=/root/.nvm/versions/node/v12.22.12/bin:$PATH && npm install' // Set PATH and install project dependencies
-          
-       }
+       steps {   
+             sh '/root/.nvm/versions/node/v12.22.12/bin/npm install' // Use full path to npm  
+         }
     }
 
 //    stage('Test') {
