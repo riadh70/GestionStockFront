@@ -10,12 +10,10 @@ pipeline {
           }
        } 
     stage('Build') {  
-        tools {
-           nodejs 'Node 12'
-        } 
-      steps { 
-        sh 'npm install'
-      }
+       steps {
+          sh 'source /root/.nvm/nvm.sh && nvm use 12.22.12 && npm install'
+          sh 'source /root/.nvm/nvm.sh && nvm use 12.22.12 && npm run build'
+       }
     }
 
 //    stage('Test') {
