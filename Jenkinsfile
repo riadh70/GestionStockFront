@@ -11,7 +11,7 @@ pipeline {
        } 
     stage('Build') {  
        steps {   
-             sh '/root/.nvm/versions/node/v12.22.12/bin/npm install' // Use full path to npm  
+             sh 'npm install' // Use full path to npm  
          }
     }
 
