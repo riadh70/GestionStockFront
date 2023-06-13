@@ -11,7 +11,8 @@ pipeline {
        } 
     stage('Install node modules') {  
        steps {   
-             sh "npm install" // Use full path to npm  
+             sh 'env'
+             sh 'npm install' // Use full path to npm  
          }
     }
 
