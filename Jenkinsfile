@@ -9,9 +9,12 @@ pipeline {
            echo 'checkout stage'
           }
        } 
-    stage('Build') {
-      steps {
-        sh '/root/.nvm/versions/node/v14.21.3/bin/node /root/.nvm/versions/node/v14.21.3/bin/npm install' // Install project dependencies
+    stage('Build') {  
+        tools {
+           nodejs 'Node 12'
+        } 
+      steps { 
+        sh 'npm install'
       }
     }
 
