@@ -11,8 +11,8 @@ pipeline {
        } 
     stage('Build') {  
        steps {
-          sh 'source /root/.nvm/nvm.sh && nvm use 12.22.12 && npm install'
-          sh 'source /root/.nvm/nvm.sh && nvm use 12.22.12 && npm run build'
+          sh 'npm install'
+          
        }
     }
 
