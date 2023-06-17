@@ -18,11 +18,11 @@ pipeline {
          }
     }
 
-//    stage('Test') {
-//      steps {
-//        sh 'npm run test' // Run unit tests
-//      }
-//    }
+    stage('Test') {
+      steps {
+        sh 'npm run test' // Run unit tests
+      }
+    }
 
 //    stage('Build Artifact') {
 //      steps {
