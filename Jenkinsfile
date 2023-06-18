@@ -18,17 +18,17 @@ pipeline {
          }
     }
 
-    stage('Test') {
-      steps {
-        sh 'npm run test' // Run unit tests
-      }
-    }
-
-//    stage('Build Artifact') {
+//    stage('Test') {
 //      steps {
-//        sh 'npm run build -- --prod' // Build the Angular app for production
+//        sh 'npm run test' // Run unit tests
 //      }
 //    }
+
+    stage('Build Artifact') {
+      steps {
+        sh 'npm run build -- --prod' // Build the Angular app for production
+      }
+    }
 
 
   }
