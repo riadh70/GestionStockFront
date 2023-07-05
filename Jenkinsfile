@@ -39,7 +39,12 @@ pipeline {
      stage("docker build") {
        steps{
            script {
-                sh 'docker build -t esprituser/gestiondestockfront:latest -f ./Dockerfile .'
+             def registry = "esprituser" // Update with your Docker registry URL
+             def imageName = "gestionstockfront" // Update with your Docker image name
+             def imageTag = "${env.BUILD_NUMBER}" // Use the Jenkins build number as the image tag
+
+          // Build the Docker image
+             docker.build("${registry}/${imageName}:${imageTag}", "-f Dockerfile .")
 
               }
            }
