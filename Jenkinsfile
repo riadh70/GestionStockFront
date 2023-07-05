@@ -36,15 +36,14 @@ pipeline {
 //      }
 //    } 
 
-   //  stage("docker build") {
-   //    steps{
-   //        script {
-              //  dockerImage = docker.build registry + ":$BUILD_NUMBER" 
-     //           dockerImage = docker.build "${registry}:${BUILD_NUMBER}" 
+     stage("docker build") {
+       steps{
+           script {
+                sh 'docker build -t esprituser/gestiondestockfront:latest .'
 
-       //       }
-         //  }
-       //  }  
+              }
+           }
+         }  
          stage("DockerHub login ") {
               steps{
                   sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u esprituser -p P@ssw0rd@imc'
