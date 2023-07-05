@@ -1,10 +1,10 @@
 pipeline {   
 
-    environment{
-        registry="esprituser/gestiondestockfront"
-        registryCredential='esprituser-dockerhub'
-        PATH = "$PATH:/usr/local/bin"
-  } 
+//    environment{
+//        registry="esprituser/gestiondestockfront"
+//        registryCredential='esprituser-dockerhub'
+//        PATH = "$PATH:/usr/local/bin"
+//  } 
 
   agent any
 
@@ -39,7 +39,9 @@ pipeline {
      stage("docker build") {
        steps{
            script {
-                dockerImage = docker.build registry + ":$BUILD_NUMBER"
+              //  dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+                dockerImage = docker.build "${registry}:${BUILD_NUMBER}" 
+
               }
            }
          }  
