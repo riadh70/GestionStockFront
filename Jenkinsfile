@@ -36,19 +36,7 @@ pipeline {
 //      }
 //    } 
 
-     stage("docker build") {
-       steps{
-           script {
-             def registry = "esprituser" // Update with your Docker registry URL
-             def imageName = "gestionstockfront" // Update with your Docker image name
-             def imageTag = "${env.BUILD_NUMBER}" // Use the Jenkins build number as the image tag
-
-          // Build the Docker image
-             docker.build("${registry}/${imageName}:${imageTag}", "-f Dockerfile .")
-
-              }
-           }
-         }  
+   
          stage("DockerHub login ") {
               steps{
                   sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u esprituser -p P@ssw0rd@imc'
@@ -64,6 +52,14 @@ pipeline {
 //         }
 //      }   
 
+           stage("SonarQube Analysis") {
+         steps {
+             withSonarQubeEnv('sq1') {
+                bat "npm run sonar"
+             }
+                 
+          }
+       } 
 
   }
 }
