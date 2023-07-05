@@ -30,11 +30,11 @@ pipeline {
 //      }
 //    }
 
-    stage('Build Artifact') {
-      steps {
-        sh 'npm run build -- --prod' // Build the Angular app for production
-      }
-    } 
+//    stage('Build Artifact') {
+//      steps {
+//        sh 'npm run build -- --prod' // Build the Angular app for production
+//      }
+//    } 
 
      stage("docker build") {
        steps{
