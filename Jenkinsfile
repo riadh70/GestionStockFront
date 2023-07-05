@@ -55,7 +55,7 @@ pipeline {
            stage("SonarQube Analysis") {
          steps {
              withSonarQubeEnv('sq1') {
-                bat "npm run sonar"
+                sh "npm run sonar"
              }
                  
           }
