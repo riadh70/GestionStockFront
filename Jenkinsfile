@@ -39,7 +39,7 @@ pipeline {
      stage("docker build") {
        steps{
            script {
-                sh 'docker build -t esprituser/gestiondestockfront:latest .'
+                sh 'docker build -t esprituser/gestiondestockfront:latest -f ./Dockerfile .'
 
               }
            }
