@@ -1,7 +1,7 @@
 pipeline {   
 
     environment{
-        registry="esprituser/gestiondefront"
+        registry="esprituser/gestiondestockfront"
         registryCredential='esprituser-dockerhub'
         PATH = "$PATH:/usr/local/bin"
   } 
