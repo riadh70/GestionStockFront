@@ -8,7 +8,20 @@ pipeline {
             steps{
             git 'https://github.com/riadh70/GestionStockFront.git'
             }
-        }
+        } 
+        stage('Install node modules') {  
+           steps {   
+              
+              sh  "npm install" 
+             
+             }
+       } 
+
+          stage('Build Artifact') {
+           steps {
+              sh 'npm run build -- --prod' // Build the Angular app for production
+      }
+    }
 
         stage('Build docker image') {
             steps {  
