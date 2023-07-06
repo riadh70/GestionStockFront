@@ -1,65 +1,35 @@
-pipeline {   
-
-//    environment{
-//        registry="esprituser/gestiondestockfront"
-//        registryCredential='esprituser-dockerhub'
-//        PATH = "$PATH:/usr/local/bin"
-//  } 
-
-  agent any
-
-  stages { 
-    stage("Cloning Project"){
-        steps {
-           git branch: 'master',
-           url: 'https://github.com/riadh70/GestionStockFront.git'     
-           echo 'checkout stage'
-          }
-       } 
-    stage('Install node modules') {  
-       steps {   
-              
-              sh  "npm install" 
-             
-         }
+pipeline {
+    agent any 
+    environment {
+    DOCKERHUB_CREDENTIALS = credentials('esprituser-dockerhub')   
     }
-
-//    stage('Test') {
-//      steps {
-//        sh 'npm run test' // Run unit tests
-//      }
-//    }
-
-//    stage('Build Artifact') {
-//      steps {
-//        sh 'npm run build -- --prod' // Build the Angular app for production
-//      }
-//    } 
-
-   
-         stage("DockerHub login ") {
-              steps{
-                  sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u esprituser -p P@ssw0rd@imc'
+    stages { 
+        stage('SCM Checkout') {
+            steps{
+            git 'https://github.com/riadh70/GestionStockFront.git'
             }
-          }
-//         stage("docker push") {
-//            steps{
-//              script {
-//                docker.withRegistry( '', registryCredential ) {
-//                dockerImage.push()
-//             }
-//           }
-//         }
-//      }   
+        }
 
-           stage("SonarQube Analysis") {
-         steps {
-             withSonarQubeEnv('sq1') {
-                sh "npm run sonar"
-             }
-                 
-          }
-       } 
+        stage('Build docker image') {
+            steps {  
+                sh 'docker build -t esprit/angularapp:$BUILD_NUMBER .'
+            }
+        }
+        stage('login to dockerhub') {
+            steps{
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u esprituser -p P@ssw0rd@imc'
 
-  }
+            }
+        }
+        stage('push image') {
+            steps{
+                sh 'docker push esprit/angularapp:$BUILD_NUMBER'
+            }
+        }
+}
+post {
+        always {
+            sh 'docker logout'
+        }
+    }
 }
