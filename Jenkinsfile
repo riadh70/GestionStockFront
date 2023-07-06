@@ -25,7 +25,7 @@ pipeline {
 
         stage('Build docker image') {
             steps {  
-                sh 'docker build -t :$BUILD_NUMBER .'                   
+                sh 'docker build -t esprituser/gestion-de-stock:$BUILD_NUMBER .'                   
             }
         }
         stage('login to dockerhub') {
@@ -36,7 +36,7 @@ pipeline {
         }
         stage('push image') {
             steps{
-                sh 'docker push esprit/angularapp:$BUILD_NUMBER'
+                sh 'docker push esprituser/gestion-de-stock:$BUILD_NUMBER'
             }
         }
 }
