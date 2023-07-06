@@ -2,7 +2,6 @@ pipeline {
     agent any 
     environment {
     DOCKERHUB_CREDENTIALS = credentials('esprituser-dockerhub')    
-    registry="esprituser/angularapp"
     }
     stages { 
         stage('SCM Checkout') {
