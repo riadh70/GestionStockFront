@@ -1,4 +1,3 @@
-# Stage 1
 FROM node:latest as node
 WORKDIR /app
 COPY . .
@@ -7,4 +6,10 @@ RUN npm run build --prod
 
 # Stage 2
 FROM nginx:alpine
-COPY --from=node /app/dist/gestion-de-stock /usr/share/nginx/html
+COPY --from=node dist/gestion-de-stock /usr/share/nginx/html
+
+# Expose the desired port (default is 80)
+EXPOSE 80
+
+# Start Nginx server
+CMD ["nginx", "-g", "daemon off;"]
