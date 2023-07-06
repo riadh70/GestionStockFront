@@ -1,7 +1,8 @@
 pipeline {
     agent any 
     environment {
-    DOCKERHUB_CREDENTIALS = credentials('esprituser-dockerhub')   
+    DOCKERHUB_CREDENTIALS = credentials('esprituser-dockerhub')    
+    registry="esprituser/angularapp"
     }
     stages { 
         stage('SCM Checkout') {
@@ -25,7 +26,7 @@ pipeline {
 
         stage('Build docker image') {
             steps {  
-                sh 'docker build -t esprit/angularapp:$BUILD_NUMBER .'
+                sh 'docker build -t :$BUILD_NUMBER .'                   
             }
         }
         stage('login to dockerhub') {
